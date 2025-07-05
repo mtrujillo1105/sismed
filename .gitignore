@@ -1,0 +1,23 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Test results
+TestResults/
+*.trx
+*.coverage*
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# Publish output
+publish/
