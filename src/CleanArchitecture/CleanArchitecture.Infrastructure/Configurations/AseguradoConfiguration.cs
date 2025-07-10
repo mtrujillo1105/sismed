@@ -1,3 +1,4 @@
+using CleanArchitecture.Domain.AcreditacionDB.Accidentes;
 using CleanArchitecture.Domain.CoreDB.Asegurados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -10,6 +11,9 @@ internal sealed class AseguradoConfiguration : IEntityTypeConfiguration<Asegurad
     {
         builder.ToTable("Asegurados");
         builder.HasKey(accidente => accidente.Id);
+
+        builder.Property(accidente => accidente.Id)
+            .HasConversion(aseguradoId => aseguradoId!.Value, value => new AseguradoId(value));
 
         builder.Property(a => a.CodigoParentesco)
             .HasColumnName("CodigoParentesco")

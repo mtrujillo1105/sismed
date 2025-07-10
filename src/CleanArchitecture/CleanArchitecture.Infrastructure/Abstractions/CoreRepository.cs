@@ -4,22 +4,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Infrastructure.Abstractions;
 
-internal abstract class CoreRepository<T>
-where T : Entity
+internal abstract class CoreRepository<TEntity, TEntityId>
+where TEntity : Entity<TEntityId>
+where TEntityId: class
 {
     protected readonly CoreDbContext DbContext;
     protected CoreRepository(CoreDbContext dbContext)
     {
         DbContext = dbContext;
     }
-    public async Task<T?> GetByIdAsync(
-        Guid id,
+    public async Task<TEntity?> GetByIdAsync(
+        TEntityId id,
         CancellationToken cancellationToken = default
     )
     {
-        return await DbContext.Set<T>().FirstOrDefaultAsync(user => user.Id == id, cancellationToken);
+        return await DbContext.Set<TEntity>()
+                .FirstOrDefaultAsync(user => user.Id == id, cancellationToken);
     }
-    public virtual void Add(T entity)
+    public virtual void Add(TEntity entity)
     {
         DbContext.Add(entity);
     }

@@ -11,6 +11,9 @@ internal sealed class AccidenteConfiguration : IEntityTypeConfiguration<Accident
         builder.ToTable("Accidentes");
         builder.HasKey(accidente => accidente.Id);
 
+        builder.Property(accidente => accidente.Id)
+            .HasConversion(accidenteId => accidenteId!.Value, value => new AccidenteId(value));
+
         builder.Property(a => a.IdAsegurado)
              .HasColumnName("IdAsegurado");
 

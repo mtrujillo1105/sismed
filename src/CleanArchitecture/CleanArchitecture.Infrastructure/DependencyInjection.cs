@@ -1,8 +1,10 @@
+using CleanArchitecture.Application.Abstractions.Authentication;
 using CleanArchitecture.Application.Abstractions.Data;
 using CleanArchitecture.Domain.Abstractions;
 using CleanArchitecture.Domain.AcreditacionDB.Accidentes;
 using CleanArchitecture.Domain.CoreDB.Asegurados;
 using CleanArchitecture.Domain.Users;
+using CleanArchitecture.Infrastructure.Authentication;
 using CleanArchitecture.Infrastructure.Data;
 using CleanArchitecture.Infrastructure.DbContexts;
 using CleanArchitecture.Infrastructure.Repositories;

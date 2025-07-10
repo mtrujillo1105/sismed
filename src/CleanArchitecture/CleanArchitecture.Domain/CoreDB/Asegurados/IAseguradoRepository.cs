@@ -3,7 +3,7 @@ namespace CleanArchitecture.Domain.CoreDB.Asegurados;
 public interface IAseguradoRepository
 {
     Task<Asegurado?> GetByIdAsync(
-        Guid id,
+        AseguradoId id,
         CancellationToken cancellationToken = default
     );
 

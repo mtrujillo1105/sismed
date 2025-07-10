@@ -5,8 +5,7 @@ using CleanArchitecture.Domain.CoreDB.Asegurados;
 
 namespace CleanArchitecture.Application.Features.Asegurados.CrearAsegurado;
 
-internal sealed class CrearAseguradoCommandHandler :
-ICommandHandler<CrearAseguradoCommand, Guid>
+internal sealed class CrearAseguradoCommandHandler :ICommandHandler<CrearAseguradoCommand, Guid>
 {
     private readonly IAseguradoRepository _aseguradoRepository;
     private readonly ICoreUnitOfWork _unitOfWork;
@@ -31,7 +30,7 @@ ICommandHandler<CrearAseguradoCommand, Guid>
             _aseguradoRepository.Add(asegurado);
             
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return asegurado.Id;
+            return asegurado.Id!.Value;
         }
         catch (ConcurrencyException)
         {

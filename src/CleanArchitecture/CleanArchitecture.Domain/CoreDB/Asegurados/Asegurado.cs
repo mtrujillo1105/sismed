@@ -2,10 +2,12 @@ using CleanArchitecture.Domain.Abstractions;
 
 namespace CleanArchitecture.Domain.CoreDB.Asegurados;
 
-public sealed class Asegurado : Entity
+public sealed class Asegurado : Entity<AseguradoId>
 {
+    public string CodigoParentesco { get; private set; }
+    public string NumeroContrato { get; private set; }
     public Asegurado(
-        Guid id,
+        AseguradoId id,
         string codigoParentesco,
         string numeroContrato
         ) : base(id)
@@ -13,8 +15,7 @@ public sealed class Asegurado : Entity
         CodigoParentesco = codigoParentesco;
         NumeroContrato = numeroContrato;
     }
-    public string CodigoParentesco { get; private set; }
-    public string NumeroContrato { get; private set; }
+
 
     // Metodos
     public static Asegurado Create(
@@ -23,7 +24,7 @@ public sealed class Asegurado : Entity
     )
     {
         var asegurado = new Asegurado(
-            Guid.NewGuid(),
+            AseguradoId.New(),
             codigoParentesco,
             numeroContrato
         );

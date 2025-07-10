@@ -7,7 +7,7 @@ using CleanArchitecture.Infrastructure.DbContexts;
 
 namespace CleanArchitecture.Infrastructure.Repositories;
 
-internal sealed class AccidenteRepository : AcreditacionRepository<Accidente>, IAccidenteRepository
+internal sealed class AccidenteRepository : AcreditacionRepository<Accidente,AccidenteId>, IAccidenteRepository
 {
     public AccidenteRepository(
         AcreditacionDbContext dbContext) : base(dbContext)

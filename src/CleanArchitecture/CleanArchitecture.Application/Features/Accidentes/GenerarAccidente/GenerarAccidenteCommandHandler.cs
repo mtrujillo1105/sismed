@@ -29,7 +29,8 @@ ICommandHandler<GenerarAccidenteCommand, Guid>
     {
         try
         {
-            var asegurado = await _aseguradoRepository.GetByIdAsync(request.IdAsegurado, cancellationToken);
+            var aseguradoId = new AseguradoId(request.IdAsegurado);
+            var asegurado = await _aseguradoRepository.GetByIdAsync(aseguradoId, cancellationToken);
             if (asegurado is null)
             {
                 return Result.Failure<Guid>(AseguradoErrors.NotFound);
@@ -44,7 +45,7 @@ ICommandHandler<GenerarAccidenteCommand, Guid>
             _accidenteRepository.Add(accidente);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return accidente.Id;
+            return accidente.Id!.Value;
         }
         catch (ConcurrencyException)
         {
